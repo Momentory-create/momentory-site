@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowDown } from 'lucide-react';
 import MetallicLogo from './components/MetallicLogo';
+import Footer from "./components/Footer";
 import FadeIn from './components/FadeIn';
 
 // --- Components defined within App to share context if needed, or keeping file count low per instructions ---
@@ -22,20 +23,56 @@ const Navigation: React.FC<{ isOpen: boolean; toggle: () => void; isScrolled: bo
       </button>
     </div>
 
-    {/* Full Screen Menu */}
-    <div className={`fixed inset-0 bg-[#FAFAFA] z-40 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
-      <div className="h-full flex flex-col justify-center items-center">
-        <ul className="space-y-8 text-center">
-          {['Philosophy', 'Services', 'Company', 'Contact'].map((item, index) => (
-            <li key={item} className="overflow-hidden">
-               <a href={`#${item.toLowerCase()}`} onClick={toggle} className="block font-cinzel text-4xl md:text-6xl text-gray-300 hover:text-black hover:text-metallic transition-all duration-300 transform hover:scale-105">
-                 {item}
-               </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+    {/* Right Sidebar Menu */}
+<div
+  className={`fixed inset-0 z-40 transition-opacity duration-500
+  ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+>
+  {/* 背景 */}
+  <div className="absolute inset-0 bg-white"></div>
+
+  {/* 右サイドバー */}
+  <div
+    className={`absolute top-0 right-0 h-full w-[75%] sm:w-[60%] md:w-[40%] bg-white
+    transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]
+    ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+  >
+    <div className="h-full flex flex-col justify-center px-10 md:px-16">
+      <ul className="space-y-6 text-right">
+  {[
+    { label: "会社情報", id: "company" },
+    { label: "会社理念", id: "philosophy" },
+    { label: "運営紹介", href: "./operator.html" },
+    { label: "サービス案内", id: "services" },
+    { label: "問い合わせ", id: "contact" },
+  ].map((item) => (
+    <li key={item.id ?? item.href}>
+      <a
+  href={item.href ?? `#${item.id}`}
+  onClick={(e) => {
+    if (item.href) {
+      e.preventDefault();                 // ブラウザ遷移を止める
+      window.location.assign(item.href);  // JSで即遷移（確実）
+      return;
+    }
+    toggle(); // ページ内リンクだけメニュー閉じる
+  }}
+  className="block text-xs md:text-sm font-noto-serif text-gray-900 hover:opacity-70"
+>
+  {item.label}
+</a>
+
+
+
+    </li>
+  ))}
+</ul>
+
+
     </div>
+  </div>
+</div>
+
   </nav>
 );
 
@@ -247,16 +284,7 @@ const App: React.FC = () => {
       </Section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-gray-200">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-           <div className="font-cinzel text-lg font-bold tracking-widest text-gray-800">
-             MOMENTORY
-           </div>
-           <div className="text-xs text-gray-400 font-lato tracking-widest">
-             &copy; {new Date().getFullYear()} Momentory Inc. All Rights Reserved.
-           </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
