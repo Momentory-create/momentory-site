@@ -1,0 +1,9 @@
+{
+  "routes": [
+    { "src": "/operator.html", "dest": "/operator.html" },
+    { "src": "/company.html", "dest": "/company.html" },
+    { "src": "/privacy-policy.html", "dest": "/privacy-policy.html" },
+    { "src": "/tokushoho.html", "dest": "/tokushoho.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
