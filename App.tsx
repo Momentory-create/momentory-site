@@ -159,8 +159,7 @@ title: (
         bulletsTitle: "提供内容",
         bullets: [
   <span>
-    会員専用サイトでの学習コンテンツ配信<br />
-    （動画・テキスト）
+    会員専用サイトでの学習コンテンツ配信（動画・テキスト）
   </span>,
   "段階的に学べるカリキュラム設計",
   "投資判断に関する質問対応・サポート",
@@ -430,20 +429,9 @@ title: (
   {service.summary}
 </p>
 
-{/* スマホ用（service3だけ） */}
-{service.id === "service3" && (
-  <p className="text-gray-500 text-sm leading-relaxed md:hidden">
-    知識・経験・ノウハウを<br />
-    「価値ある商品」として、<br />
-    市場に届けるための支援を行います。
-  </p>
-)}
-
-
 {/* スマホ用 */}
-<p className="text-gray-500 text-sm leading-relaxed md:hidden">
-  再現性を高めるためのオンラインで<br />
-  学べる環境を提供しています。
+<p className="text-gray-500 text-sm leading-relaxed whitespace-pre-line md:hidden">
+  {service.summary}
 </p>
                     <div className="mt-6 flex items-center justify-center gap-2 text-xs tracking-[0.25em] uppercase text-gray-400">
                       <span>{isOpen ? "Close" : "Details"}</span>
