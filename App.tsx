@@ -314,78 +314,105 @@ title: (
         </div>
       </header>
 
-      {/* Philosophy / Concept Section */}
-      <Section id="philosophy" className="relative">
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 -z-10 hidden md:block"></div>
+     {/* Philosophy / Concept Section */}
+<Section id="philosophy" className="relative">
+  {/* 中央の縦線 */}
+  {/* 上の縦線 */}
+<div className="absolute left-1/2 top-0 h-[55%] w-px bg-gray-200 z-0 hidden md:block"></div>
+<div className="absolute left-1/2 bottom-0 h-[35%] w-px bg-gray-200 z-0 hidden md:block"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-24 md:gap-12">
-          <div className="flex flex-col items-center md:items-end text-center md:text-right space-y-6">
-            <FadeIn>
-              <h3 className="font-cinzel text-5xl md:text-7xl text-gray-100 relative inline-block">
-                01
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl md:text-3xl text-gray-800 font-medium tracking-widest text-metallic">
-                  Moment
-                </span>
-              </h3>
-            </FadeIn>
-            <FadeIn delay={200}>
-              <h4 className="text-lg font-bold mb-4 tracking-widest">決断の一瞬</h4>
-              <p className="text-gray-600 leading-8 text-sm md:text-base max-w-md">
-  
 
-  {/* スマホ用 */}
-  <span className="md:hidden">
-    あなたの人生が動き出す、<br />
-    その瞬間。<br />
-    「変わりたい」と心が動いた、あの一瞬。<br />
-  </span>
 
-  {/* PC用 */}
-  <span className="hidden md:inline">
-    あなたの人生が動き出す、<br />
-    その瞬間。<br />
-    「変わりたい」と心が動いた、あの一瞬。<br />
-  </span>
-</p>
+  {/* 2カラム */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-24 md:gap-12">
+    {/* 左：01 Moment */}
+    <div className="flex flex-col items-center md:items-end text-center md:text-right space-y-6">
+      <FadeIn>
+        <h3 className="font-cinzel text-5xl md:text-7xl text-gray-100 relative inline-block">
+          01
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl md:text-3xl text-gray-800 font-medium tracking-widest text-metallic">
+            Moment
+          </span>
+        </h3>
+      </FadeIn>
 
-            </FadeIn>
-          </div>
+      <FadeIn delay={200}>
+        <h4 className="text-lg font-bold mb-4 tracking-widest">決断の一瞬</h4>
 
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6 mt-12 md:mt-32">
-            <FadeIn>
-              <h3 className="font-cinzel text-5xl md:text-7xl text-gray-100 relative inline-block">
-                02
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl md:text-3xl text-gray-800 font-medium tracking-widest text-metallic">
-                  Entry
-                </span>
-              </h3>
-            </FadeIn>
-            <FadeIn delay={200}>
-              <h4 className="text-lg font-bold mb-4 tracking-widest">未来への入口</h4>
-              <p className="text-gray-600 leading-8 text-sm md:text-base max-w-md">
-  
+        <p className="text-gray-600 leading-8 text-sm md:text-base max-w-md">
+          {/* スマホ用 */}
+          <span className="md:hidden">
+            あなたの人生が動き出す、<br />
+            その瞬間。<br />
+            「変わりたい」と心が動いた、あの一瞬。
+          </span>
 
-  {/* スマホ用 */}
-  <span className="md:hidden">
-    その想いを、<br />
-    行動に変える入口。<br />
-    新しい自分へ踏み出すための、<br />
-    最初の一歩。
-  </span>
+          {/* PC用 */}
+          <span className="hidden md:inline">
+            あなたの人生が動き出す、<br />
+            その瞬間。<br />
+            「変わりたい」と心が動いた、あの一瞬。
+          </span>
+        </p>
+      </FadeIn>
+    </div>
 
-  {/* PC用 */}
-  <span className="hidden md:inline">
-    その想いを、<br />
-    行動に変える入口。<br />
-    新しい自分へ踏み出すための、<br />
-    最初の一歩。<br />
-  </span>
-</p>
+    {/* 右：02 Entry */}
+    <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6 mt-12 md:mt-32">
+      <FadeIn>
+        <h3 className="font-cinzel text-5xl md:text-7xl text-gray-100 relative inline-block">
+          02
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl md:text-3xl text-gray-800 font-medium tracking-widest text-metallic">
+            Entry
+          </span>
+        </h3>
+      </FadeIn>
 
-            </FadeIn>
-          </div>
-        </div>
-      </Section>
+      <FadeIn delay={200}>
+        <h4 className="text-lg font-bold mb-4 tracking-widest">未来への入口</h4>
+
+        <p className="text-gray-600 leading-8 text-sm md:text-base max-w-md">
+          {/* スマホ用 */}
+          <span className="md:hidden">
+            その想いを、<br />
+            行動に変える入口。<br />
+            新しい自分へ踏み出すための、<br />
+            最初の一歩。
+          </span>
+
+          {/* PC用 */}
+          <span className="hidden md:inline">
+            その想いを、<br />
+            行動に変える入口。<br />
+            新しい自分へ踏み出すための、<br />
+            最初の一歩。
+          </span>
+        </p>
+      </FadeIn>
+    </div>
+  </div>
+
+  {/* ★中央CTAボタン：縦線（ページ中央）の真上 */}
+
+</Section>
+{/* ★中央CTAボタン：縦線（ページ中央）の真上 */}
+<div className="mt-16 mb-24 flex justify-center relative z-10">
+
+  <a
+    href="/company-profile.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group relative inline-block w-72 text-center py-6"
+  >
+    <span className="absolute top-0 left-0 w-full h-px bg-gray-300 group-hover:bg-gray-800 transition-colors duration-500" />
+    <span className="absolute bottom-0 left-0 w-full h-px bg-gray-300 group-hover:bg-gray-800 transition-colors duration-500" />
+
+    <span className="relative flex items-center justify-center gap-4 text-gray-700 tracking-[0.2em] text-sm md:text-base group-hover:text-black transition-colors duration-500">
+      会社概要を見る
+      <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+    </span>
+  </a>
+</div>
 
       {/* Catchphrase / Divider */}
       <section className="py-32 bg-gray-50/50 border-t border-b border-gray-100">
