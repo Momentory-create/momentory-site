@@ -271,22 +271,22 @@ title: (
 
   <h2 className="font-noto-serif leading-relaxed text-center">
   {/* スマホ */}
-  <span className="md:hidden block space-y-6">
+  <span className="md:hidden block space-y-5 text-sm">
 
-    <span className="block text-lg font-medium text-gray-800 tracking-wide">
+    <span className="block font-medium text-gray-800">
       「変わりたい」
     </span>
 
-    <span className="block text-base text-gray-700">
+    <span className="block text-gray-700">
       そう感じた、その瞬間から。
     </span>
 
-    <span className="block text-base font-medium text-gray-800">
+    <span className="block font-medium text-gray-800">
       小さな決断を、<br />
       未来の自信に。
     </span>
 
-    <span className="block text-base text-gray-800 pt-2">
+    <span className="block text-gray-800 pt-1">
       私たちは、あなたと共に<br />
       <span className="font-medium">「なりたい」</span>を叶えます。
     </span>
@@ -300,6 +300,7 @@ title: (
     私たちは、あなたと共に「なりたい」を叶えます。
   </span>
 </h2>
+
 
 
   <p className="mt-4 font-cinzel text-xs text-gray-400 tracking-widest">
