@@ -331,22 +331,20 @@ title: (
             <FadeIn delay={200}>
               <h4 className="text-lg font-bold mb-4 tracking-widest">決断の一瞬</h4>
               <p className="text-gray-600 leading-8 text-sm md:text-base max-w-md">
-  <span className="font-bold block mb-2">Moment of Truth</span>
+  
 
   {/* スマホ用 */}
   <span className="md:hidden">
-    顧客が「良い・悪い」を判断する決定的瞬間。<br />
-    Micro-moments：欲求が生まれ、<br />
-    行動する小さな瞬間。<br />
-    私たちは、顧客の心が動く決定の瞬間を<br />
-    デザインします。
+    あなたの人生が動き出す、<br />
+    その瞬間。<br />
+    「変わりたい」と心が動いた、あの一瞬。<br />
   </span>
 
   {/* PC用 */}
   <span className="hidden md:inline">
-    顧客が「良い・悪い」を判断する決定的瞬間。<br />
-    Micro-moments：欲求が生まれ、行動する小さな瞬間。<br />
-    私たちは、顧客の心が動く決定の瞬間をデザインします。<br />
+    あなたの人生が動き出す、<br />
+    その瞬間。<br />
+    「変わりたい」と心が動いた、あの一瞬。<br />
   </span>
 </p>
 
@@ -365,20 +363,22 @@ title: (
             <FadeIn delay={200}>
               <h4 className="text-lg font-bold mb-4 tracking-widest">未来への入口</h4>
               <p className="text-gray-600 leading-8 text-sm md:text-base max-w-md">
-  <span className="font-bold block mb-2">Entry Point</span>
+  
 
   {/* スマホ用 */}
   <span className="md:hidden">
-    新しい市場への参入。<br />
-    顧客との接点・チャンスの入り口。<br />
-    挑戦者を次のステージへ運ぶ<br />
-    「確かな入口」をつくります。
+    その想いを、<br />
+    行動に変える入口。<br />
+    新しい自分へ踏み出すための、<br />
+    最初の一歩。
   </span>
 
   {/* PC用 */}
   <span className="hidden md:inline">
-    新しい市場への参入。顧客との接点・チャンスの入り口。<br />
-    挑戦者を次のステージへ運ぶ「確かな入口」をつくります。<br />
+    その想いを、<br />
+    行動に変える入口。<br />
+    新しい自分へ踏み出すための、<br />
+    最初の一歩。<br />
   </span>
 </p>
 
