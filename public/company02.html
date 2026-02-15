@@ -11,19 +11,29 @@
   --bg2:#e3e9f2;
   --text:#2f3b4c;
   --sub:#6b7686;
+  --line: rgba(47,59,76,.22);
 }
 
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; height:100%; }
 
 body{
+  background: none; /* ← 背景は fixed レイヤーに置く */
+  color: var(--text);
+  font-family: "Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  line-height: 2;
+}
+
+/* ✅ 背景ズレ対策：固定レイヤー */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   background:
     radial-gradient(1200px 800px at 20% 0%, rgba(120,150,190,.15), transparent 60%),
     radial-gradient(900px 700px at 90% 30%, rgba(160,180,210,.12), transparent 55%),
     linear-gradient(to bottom, var(--bg), var(--bg2));
-  color: var(--text);
-  font-family: "Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
-  line-height: 2;
 }
 
 /* =========================
@@ -37,11 +47,11 @@ body{
 }
 
 .hero img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 42%;
-  display:block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;            /* 横いっぱい */
+  object-position: center 42%;  /* 人物位置 */
+  display: block;
 }
 
 /* 透明寄りの光（やりすぎない） */
@@ -51,7 +61,7 @@ body{
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(900px 600px at 50% 45%, rgba(255,255,255,.25), transparent 60%),
+    radial-gradient(900px 600px at 50% 45%, rgba(255,255,255,.22), transparent 60%),
     linear-gradient(to bottom, rgba(255,255,255,.05), rgba(255,255,255,0));
 }
 
@@ -62,7 +72,7 @@ body{
   width: min(820px, 92vw);
   margin: 0 auto;
   padding: clamp(40px, 6vw, 80px) 0;
-  text-align:center;
+  text-align: center;
 }
 
 .section-title{
@@ -85,17 +95,17 @@ body{
 }
 
 .back-top a{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding: 14px 28px;
   font-size: 13px;
   letter-spacing: .14em;
   text-decoration: none;
   color: rgba(47,59,76,.95);
-  border: 1px solid rgba(47,59,76,.22);
-  background: rgba(255,255,255,.22);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.18);
   backdrop-filter: blur(8px);
   transition: transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
 }
@@ -111,21 +121,21 @@ body{
    SCROLL ANIMATION（控えめ）
    ========================= */
 .reveal{
-  opacity:0;
+  opacity: 0;
   transform: translateY(18px);
   transition: opacity .8s ease, transform .8s ease;
   will-change: opacity, transform;
 }
 .reveal.show{
-  opacity:1;
+  opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce){
   .reveal{
-    opacity:1 !important;
-    transform:none !important;
-    transition:none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
@@ -140,30 +150,39 @@ footer{
 }
 
 /* =========================
-   MOBILE OPTIMIZE（スマホは画像を2/3くらい）
-   追加場所：styleの一番下（ここ）
+   MOBILE：ヒーローを「もう2回り」小さく＋vh暴れ対策
    ========================= */
 @media (max-width: 768px){
   .hero{
-    height: 66vh;       /* 画面の約2/3 */
-    min-height: 340px;  /* 小さくなりすぎ防止 */
-    max-height: 520px;  /* 大きくなりすぎ防止 */
+    /* 以前66vh → もっと小さく（だいたい半分ちょい） */
+    height: clamp(260px, 52vh, 420px);
+  }
+
+  /* iPhoneでvhが暴れにくい単位が使えるなら優先 */
+  @supports (height: 1svh){
+    .hero{
+      height: clamp(260px, 52svh, 420px);
+    }
   }
 
   .hero img{
-    object-position: center 46%; /* スマホは少し下寄せ */
+    object-position: center 46%;
   }
 
   .wrap{
-    padding: 36px 0 72px; /* スマホの余白を少し詰める */
+    padding: 34px 0 72px;
   }
 
   .section-title{
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .prose p{
-    margin-bottom: 34px;
+    margin-bottom: 32px;
+  }
+
+  .back-top{
+    margin-top: 44px;
   }
 }
 </style>
