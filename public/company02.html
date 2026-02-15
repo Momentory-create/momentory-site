@@ -196,4 +196,40 @@ footer{
       行動に変えられないまま、<br>
       過ぎ去ってしまう。</p>
 
-    <p class="reveal">私たちは、その想いを<br
+    <p class="reveal">私たちは、その想いを<br>
+      未来へ進むための入口（Entry）に繋げます。</p>
+  </div>
+
+  <div class="back-top reveal">
+    <a
+      href="https://momentory.pages.dev/company-profile.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="TOPページへ戻る（PDFを開きます）"
+    >
+      ← TOPページに戻る
+    </a>
+  </div>
+</main>
+
+<footer>© Momentory</footer>
+
+<script>
+const elements = document.querySelectorAll('.reveal');
+elements.forEach((el,i)=>{
+  el.style.transitionDelay = (i * 0.12) + "s";
+});
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.15});
+
+elements.forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
