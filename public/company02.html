@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>会社詳細 | Momentory</title>
+
+<style>
+:root{
+  --bg:#eef2f7;
+  --bg2:#e3e9f2;
+  --text:#2f3b4c;
+  --sub:#6b7686;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; height:100%; }
+
+body{
+  background:
+    radial-gradient(1200px 800px at 20% 0%, rgba(120,150,190,.15), transparent 60%),
+    radial-gradient(900px 700px at 90% 30%, rgba(160,180,210,.12), transparent 55%),
+    linear-gradient(to bottom, var(--bg), var(--bg2));
+  color: var(--text);
+  font-family: "Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  line-height: 2;
+}
+
+/* =========================
+   HERO（横いっぱい）
+   ========================= */
+.hero{
+  position: relative;
+  height: clamp(420px, 80vh, 820px);
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;              /* ← 横いっぱい */
+  object-position:center 42%;    /* ← 人物位置調整（必要なら 35〜55%） */
+  display:block;
+}
+
+/* 透明寄りの光（やりすぎない） */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 50% 45%, rgba(255,255,255,.25), transparent 60%),
+    linear-gradient(to bottom, rgba(255,255,255,.05), rgba(255,255,255,0));
+}
+
+/* タイトル */
+.hero-content{
+  position:absolute;
+  left:0; right:0;
+  bottom: clamp(24px, 5vw, 60px);
+  text-align:center;
+  z-index:2;
+  padding: 0 16px;
+}
+
+.hero-content .kicker{
+  letter-spacing:.4em;
+  font-size:12px;
+  color: rgba(47,59,76,.75);
+}
+
+.hero-content h1{
+  margin: 12px 0 10px;
+  font-size: clamp(30px, 6vw, 52px);
+  letter-spacing: .08em;
+  color: rgba(47,59,76,.92);
+}
+
+.hero-content p{
+  margin: 0;
+  font-size: clamp(14px, 2.5vw, 16px);
+  color: rgba(107,118,134,.9);
+}
+
+/* =========================
+   CONTENT（中央揃え・背景は触らない）
+   ========================= */
+.wrap{
+  width: min(820px, 92vw);
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) 0;
+  text-align:center;
+}
+
+.section-title{
+  font-size: 20px;
+  margin: 0 0 40px;
+  letter-spacing: .05em;
+}
+
+.prose p{
+  margin: 0 0 40px;
+  font-size: clamp(15px, 2.8vw, 17px);
+}
+
+/* =========================
+   BACK BUTTON
+   ========================= */
+.back-top{
+  margin: 56px 0 0;
+  text-align:center;
+}
+
+.back-top a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding: 14px 28px;
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-decoration: none;
+  color: rgba(47,59,76,.95);
+  border: 1px solid rgba(47,59,76,.22);
+  background: rgba(255,255,255,.22);
+  backdrop-filter: blur(8px);
+  transition: transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+}
+
+.back-top a:hover{
+  transform: translateY(-1px);
+  background: rgba(47,59,76,.92);
+  border-color: rgba(47,59,76,.92);
+  color: #fff;
+}
+
+/* =========================
+   SCROLL ANIMATION（控えめ）
+   ========================= */
+.reveal{
+  opacity:0;
+  transform: translateY(18px);
+  transition: opacity .8s ease, transform .8s ease;
+  will-change: opacity, transform;
+}
+.reveal.show{
+  opacity:1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer{
+  text-align:center;
+  padding: 56px 0 64px;
+  color: var(--sub);
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero" aria-label="会社概要 ヒーロー">
+  <img src="/images/company-hero.jpg" alt="Momentory Hero">
+
+</header>
+
+<main class="wrap">
+  <h2 class="section-title reveal">Momentoryとは</h2>
+
+  <div class="prose">
+    <p class="reveal">Momentoryは、<br>
+      Moment（瞬間）と<br>
+      Entry（入口）を掛け合わせた言葉です。</p>
+
+    <p class="reveal">人生には、<br>
+      ふと心が動く瞬間があります。</p>
+
+    <p class="reveal">「このままじゃ終わりたくない」<br>
+      「変わりたい」<br>
+      そう感じた、ほんの一瞬。</p>
+
+    <p class="reveal">それがMoment。</p>
+
+    <p class="reveal">でも、多くの人はその瞬間を<br>
+      行動に変えられないまま、<br>
+      過ぎ去ってしまう。</p>
+
+    <p class="reveal">私たちは、その想いを<br>
+      未来へ進むための入口（Entry）に繋げます。</p>
+  </div>
+
+  <!-- TOP（指定URL）へ戻る -->
+  <div class="back-top reveal">
+    <a
+      href="https://momentory.pages.dev/company-profile.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="TOPページへ戻る（PDFを開きます）"
+    >
+      ← TOPページに戻る
+    </a>
+  </div>
+</main>
+
+<footer>© Momentory</footer>
+
+<script>
+const elements = document.querySelectorAll('.reveal');
+elements.forEach((el,i)=>{
+  el.style.transitionDelay = (i * 0.12) + "s";
+});
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.15});
+
+elements.forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>

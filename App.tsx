@@ -399,16 +399,17 @@ title: (
 <div className="mt-16 mb-24 flex justify-center relative z-10">
 
   <a
-    href="/company-profile.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group relative inline-block w-72 text-center py-6"
-  >
+  href="/company02.html"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group relative inline-block w-72 text-center py-6"
+>
+
     <span className="absolute top-0 left-0 w-full h-px bg-gray-300 group-hover:bg-gray-800 transition-colors duration-500" />
     <span className="absolute bottom-0 left-0 w-full h-px bg-gray-300 group-hover:bg-gray-800 transition-colors duration-500" />
 
     <span className="relative flex items-center justify-center gap-4 text-gray-700 tracking-[0.2em] text-sm md:text-base group-hover:text-black transition-colors duration-500">
-      会社概要を見る
+      会社詳細を見る
       <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
     </span>
   </a>
