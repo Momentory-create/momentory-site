@@ -44,52 +44,68 @@ const Navigation: React.FC<{
     </div>
 
     {/* Right Sidebar Menu */}
-    <div
-      className={`fixed inset-0 z-40 transition-opacity duration-500 ${
-        isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-      }`}
-    >
-      {/* 背景 */}
-      <div className="absolute inset-0 bg-white"></div>
+<div
+  className={`fixed inset-0 z-40 transition-opacity duration-500 ${
+    isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  }`}
+  onClick={toggle}   // ★メニュー外を押したら閉じる
+>
+  {/* 背景（クリック可能） */}
+  <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
 
-      {/* 右サイドバー */}
-      <div
-        className={`absolute top-0 right-0 h-full w-[75%] sm:w-[60%] md:w-[40%] bg-white
-        transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]
-        ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+  {/* 右サイドバー（ここを押しても閉じない） */}
+  <div
+    className={`absolute top-0 right-0 h-full 
+    w-[260px] sm:w-[300px] md:w-[340px]   /* ★幅を細くして余白を削る */
+    bg-white
+    transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]
+    ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+    onClick={(e) => e.stopPropagation()} // ★ここ大事
+  >
+    {/* 上部：閉じるボタン */}
+    <div className="absolute top-4 right-4">
+      <button
+        onClick={toggle}
+        className="p-2 rounded-md hover:bg-gray-100 transition"
+        aria-label="Close menu"
       >
-        <div className="h-full flex flex-col justify-center px-10 md:px-16">
-          <ul className="space-y-6 text-right">
-            {[
-              { label: "会社情報", id: "company" },
-              { label: "会社理念", id: "philosophy" },
-              { label: "運営紹介", href: "/operator.html" },
-              { label: "サービス案内", id: "services" },
-              // ★追加：表セクション
-              { label: "変化の比較", id: "transformation" },
-              { label: "問い合わせ", id: "contact" },
-            ].map((item) => (
-              <li key={item.id ?? item.href}>
-                <a
-                  href={item.href ?? `#${item.id}`}
-                  onClick={(e) => {
-                    if (item.href) {
-                      e.preventDefault();
-                      window.location.assign(item.href);
-                      return;
-                    }
-                    toggle();
-                  }}
-                  className="block text-xs md:text-sm font-noto-serif text-gray-900 hover:opacity-70"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+        <X className="w-5 h-5 text-gray-800" />
+      </button>
     </div>
+
+   <div className="h-full flex flex-col justify-center px-8 md:px-16">
+      <ul className="space-y-5 text-right">
+        {[
+          { label: "会社情報", id: "top" },
+          { label: "会社理念", id: "philosophy" },
+          { label: "運営者紹介", href: "/operator.html" },
+          { label: "サービス案内", id: "services" },
+          { label: "問い合わせ", id: "contact" },
+        ].map((item) => (
+          <li key={item.id ?? item.href}>
+            <a
+              href={item.href ?? `#${item.id}`}
+              onClick={(e) => {
+                if (item.href) {
+                  e.preventDefault();
+                  toggle(); // ★外部ページ行く前に閉じる（体感が良くなる）
+                  window.location.assign(item.href);
+                  return;
+                }
+                toggle();
+              }}
+              className="block text-[16px] md:text-sm font-noto-serif text-gray-900 tracking-[0.08em] leading-none py-3 px-3 rounded-sm hover:bg-black/[0.03] active:bg-black/[0.05] transition"
+
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
   </nav>
 );
 
@@ -315,6 +331,13 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+  document.body.style.overflow = menuOpen ? "hidden" : "";
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [menuOpen]);
+
 
   // アコーディオン：開いているサービス番号
   const [openService, setOpenService] = useState<Service["no"] | null>(null);
@@ -436,6 +459,21 @@ const App: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  useEffect(() => {
+  if (!menuOpen) {
+    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
+    return;
+  }
+  document.body.style.overflow = "hidden";
+  document.body.style.touchAction = "none";
+
+  return () => {
+    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
+  };
+}, [menuOpen]);
+
 
   // Loading Screen
   if (loading) {
@@ -472,9 +510,13 @@ const App: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <header className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+      <header
+  id="top"
+  className="relative h-screen flex flex-col items-center justify-center overflow-hidden"
+>
         <FadeIn delay={200}>
           <MetallicLogo size="xl" />
+          
         </FadeIn>
 
         <FadeIn
@@ -650,9 +692,12 @@ const App: React.FC = () => {
           <span className="font-cinzel text-gray-400 tracking-[0.3em] mb-2">
             OUR EXPERTISE
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl text-gray-800">
-            Services
-          </h2>
+          <h2 className="font-serif text-3xl md:text-4xl text-gray-800 flex flex-col items-center">
+  <span>Services</span>
+  <span className="text-sm tracking-[0.2em] mt-2 text-gray-500">
+    サービス
+  </span>
+</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -788,10 +833,14 @@ const App: React.FC = () => {
               rel="noopener noreferrer"
               className="group relative px-8 py-4 border border-gray-600 hover:border-white transition-all duration-300 overflow-hidden"
             >
-              <span className="relative z-10 font-lato tracking-[0.2em] text-sm group-hover:text-black transition-colors duration-300">
-                CONTACT US
-              </span>
-              <div className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></div>
+              <span className="relative z-10 flex flex-col items-center font-lato tracking-[0.2em] text-sm group-hover:text-black transition-colors duration-300">
+  <span>CONTACT US</span>
+  <span className="text-[11px] tracking-[0.15em] mt-1 opacity-70">
+    お問い合わせ
+  </span>
+</span>
+              <div className="absolute inset-0 bg-black/[0.03]"></div>
+
             </a>
           </div>
         </div>
