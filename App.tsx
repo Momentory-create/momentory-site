@@ -302,14 +302,16 @@ const TransformationSection: React.FC = () => {
                     <div className="font-noto-serif text-sm md:text-base text-gray-900 tracking-wider">{row.label}</div>
                   </td>
                   <td className="p-6 align-top">
-                    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm leading-relaxed">
+                    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-[13px] leading-normal">
+
                       {row.before.map((t, i) => (
                         <li key={i}>{t}</li>
                       ))}
                     </ul>
                   </td>
                   <td className="p-6 align-top">
-                    <ul className="list-disc pl-5 space-y-2 text-gray-900 text-sm leading-relaxed">
+                   <ul className="list-disc pl-5 space-y-2 text-gray-900 text-[13px] leading-normal">
+
                       {row.after.map((t, i) => (
                         <li key={i}>{t}</li>
                       ))}
