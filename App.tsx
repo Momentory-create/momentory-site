@@ -516,9 +516,10 @@ const App: React.FC = () => {
             </span>
           </h2>
 
-          <p className="mt-2 md:mt-4 font-cinzel text-[11px] text-gray-400 tracking-[0.25em]">
+          <p className="mt-2 md:mt-4 font-cinzel text-sm md:text-xs text-gray-400 tracking-[0.2em]">
   From a single decision to your future.
 </p>
+
 
         </FadeIn>
 
