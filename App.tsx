@@ -239,15 +239,16 @@ const transformationRows: TransformRow[] = [
   label: "01｜状態",
   before: [
     <>将来に対して漠然とした不安を抱えている</>,
-    <>何か始めたい気持ちはあるが、<br />自信が持てない</>,
-    <>変わりたいと思いながらも、<br />一歩を踏み出せずにいる</>,
+    <>何か始めたい気持ちはあるが、<br className="md:hidden" />自信が持てない</>,
+    <>変わりたいと思いながらも、<br className="md:hidden" />一歩を踏み出せずにいる</>,
   ],
   after: [
     <>自分の選択に確信を持てている</>,
-    <>将来に対して具体的なビジョンを<br />描けている</>,
-    <>「変わりたい」が「変われる」に<br />変わっている</>,
+    <>将来に対して具体的なビジョンを<br className="md:hidden" />描けている</>,
+    <>「変わりたい」が「変われる」に<br className="md:hidden" />変わっている</>,
   ],
 },
+
 
   {
     label: "02｜学び",
@@ -303,12 +304,15 @@ const TransformationSection: React.FC = () => {
                     <div className="font-noto-serif text-sm md:text-base text-gray-900 tracking-wider">{row.label}</div>
                   </td>
                   <td className="p-6 align-top">
-                    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm leading-relaxed">
-                      {row.before.map((t, i) => (
-                        <li key={i}>{t}</li>
-                      ))}
-                    </ul>
-                  </td>
+  <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm leading-relaxed">
+    {row.before.map((t, i) => (
+      <li key={i} className="whitespace-nowrap">
+        {t}
+      </li>
+    ))}
+  </ul>
+</td>
+
                   <td className="p-6 align-top">
                     <ul className="list-disc pl-5 space-y-2 text-gray-900 text-sm leading-relaxed">
                       {row.after.map((t, i) => (
