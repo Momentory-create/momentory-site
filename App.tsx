@@ -752,7 +752,7 @@ disclaimer: [
                 {isOpen && (
                   <div
                     id={`${service.id}-detail`}
-                    className="px-8 pb-10 -mt-2 text-sm text-gray-700 leading-relaxed space-y-6"
+                    className="px-5 md:px-8 pb-10 -mt-2 text-sm text-gray-700 leading-relaxed space-y-6"
                   >
                     {/* ★bodyがReactNodeでも安全に表示 */}
                     <div className="leading-relaxed">{service.body}</div>
