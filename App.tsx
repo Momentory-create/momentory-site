@@ -102,11 +102,7 @@ const Navigation: React.FC<{
           {isOpen ? "Close" : "Menu"}
         </span>
         <div className="relative p-2">
-          {isOpen ? (
-            <X className="w-6 h-6 text-gray-800" />
-          ) : (
-            <Menu className="w-6 h-6 text-gray-800" />
-          )}
+          {isOpen ? <X className="w-6 h-6 text-gray-800" /> : <Menu className="w-6 h-6 text-gray-800" />}
         </div>
       </button>
     </div>
@@ -219,13 +215,18 @@ type Service = {
   titleText: string;
   image: string;
   summary: string | React.ReactNode;
-  body: string;
+
+  // ★JSXでスマホだけ改行できるように
+  body: React.ReactNode;
+
   bulletsTitle?: string;
   bullets?: React.ReactNode[];
   noteTitle?: string;
   note?: string;
   disclaimerTitle?: string;
-  disclaimer?: string[];
+
+  // ★disclaimerもJSX対応
+  disclaimer?: React.ReactNode[];
 };
 
 type TransformRow = {
@@ -236,19 +237,32 @@ type TransformRow = {
 
 const transformationRows: TransformRow[] = [
   {
-  label: "01｜状態",
-  before: [
-    <>将来に対して漠然とした不安を抱えている</>,
-    <>何か始めたい気持ちはあるが、<br className="md:hidden" />自信が持てない</>,
-    <>変わりたいと思いながらも、<br className="md:hidden" />一歩を踏み出せずにいる</>,
-  ],
-  after: [
-    <>自分の選択に確信を持てている</>,
-    <>将来に対して具体的なビジョンを<br className="md:hidden" />描けている</>,
-    <>「変わりたい」が「変われる」に<br className="md:hidden" />変わっている</>,
-  ],
-},
-
+    label: "01｜状態",
+    before: [
+      <>将来に対して漠然とした不安を抱えている</>,
+      <>
+        何か始めたい気持ちはあるが、<br className="md:hidden" />
+        自信が持てない
+      </>,
+      <>
+        変わりたいと思いながらも、<br className="md:hidden" />
+        一歩を踏み出せずにいる
+      </>,
+    ],
+    after: [
+      <>自分の選択に確信を持てている</>,
+      <>
+        将来に対して具体的なビジョンを
+        <br className="md:hidden" />
+        描けている
+      </>,
+      <>
+        「変わりたい」が「変われる」に
+        <br className="md:hidden" />
+        変わっている
+      </>,
+    ],
+  },
 
   {
     label: "02｜学び",
@@ -276,10 +290,10 @@ const TransformationSection: React.FC = () => {
         <p className="mt-4 text-gray-600 text-sm md:text-base text-center max-w-2xl leading-relaxed space-y-2">
           <span className="block">学びを「知識」で終わらせず、行動に変える。</span>
           <span className="block">
-  Momentoryと出会った、
-  <br className="md:hidden" />
-  あなたの変化を4つの観点で整理しました。
-</span>
+            Momentoryと出会った、
+            <br className="md:hidden" />
+            あなたの変化を4つの観点で整理しました。
+          </span>
         </p>
       </div>
 
@@ -303,15 +317,16 @@ const TransformationSection: React.FC = () => {
                   <td className="p-6 align-top">
                     <div className="font-noto-serif text-sm md:text-base text-gray-900 tracking-wider">{row.label}</div>
                   </td>
+
                   <td className="p-6 align-top">
-  <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm leading-relaxed">
-    {row.before.map((t, i) => (
-      <li key={i} className="whitespace-nowrap">
-        {t}
-      </li>
-    ))}
-  </ul>
-</td>
+                    <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm leading-relaxed">
+                      {row.before.map((t, i) => (
+                        <li key={i} className="whitespace-nowrap">
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
 
                   <td className="p-6 align-top">
                     <ul className="list-disc pl-5 space-y-2 text-gray-900 text-sm leading-relaxed">
@@ -338,7 +353,6 @@ const TransformationSection: React.FC = () => {
               <div>
                 <div className="text-xs tracking-[0.25em] uppercase text-gray-400 font-lato mb-2">Before</div>
                 <ul className="list-disc pl-5 space-y-2 text-gray-700 text-[13px] leading-normal">
-
                   {row.before.map((t, i) => (
                     <li key={i}>{t}</li>
                   ))}
@@ -348,7 +362,6 @@ const TransformationSection: React.FC = () => {
               <div className="pt-4 border-t border-gray-200">
                 <div className="text-xs tracking-[0.25em] uppercase text-gray-400 font-lato mb-2">After</div>
                 <ul className="list-disc pl-5 space-y-2 text-gray-900 text-[13px] leading-normal">
-
                   {row.after.map((t, i) => (
                     <li key={i}>{t}</li>
                   ))}
@@ -389,29 +402,67 @@ const App: React.FC = () => {
         ),
         image: "/services1.jpg",
         summary: (
+          <>
+            会員サイト内で、
+            <br />
+            動画・テキストなどの学習コンテンツを
+            <br />
+            一括で管理。
+          </>
+        ),
+        body: (
   <>
-    会員サイト内で、<br />
-    動画・テキストなどの学習コンテンツを<br />
-    一括で管理。
+    学んで終わりではなく、
+    <br />
+    一人一人の理解度に寄り添ったサポートを行い、
+    ご自身で判断できる力を育てます。
+    <br />
+    <br />
+    初心者の方から、
+    <br />
+    既にトレード経験のある方まで、
+    <br />
+    段階的に学べるカリキュラム設計により、
+    <br />
+    無理なくスキルを定着させていきます。
   </>
 ),
-        body: `学んで終わりではなく、一人一人の理解度に寄り添ったサポートを行い、ご自身で判断できる力を育てます。
-
-初心者の方から、既にトレード経験のある方まで、段階的に学べるカリキュラム設計により、無理なくスキルを定着させていきます。`,
         bulletsTitle: "提供内容",
-        bullets: [
-          "会員専用サイトでの学習コンテンツ配信（動画・テキスト）",
-          "段階的に学べるカリキュラム設計",
-          "投資判断に関する質問対応・サポート",
-        ],
-        noteTitle: "運営事業",
-        note: "FX専門オンライン学習塾",
-        disclaimerTitle: "ご利用にあたってのご案内",
-        disclaimer: [
-          "本サービスは、特定の利益や成果を保証するものではありません。",
-          "相場分析・リスク管理・投資判断に必要な知識と考え方を、段階的に学ぶことを目的とした教育サービスです。",
-          "投資助言や投資判断の代行を行うものではありません。",
-        ],
+bullets: [
+  <>
+    会員専用サイトで学習コンテンツ配信
+    <br />
+    （動画・テキスト）
+  </>,
+  "段階的に学べるカリキュラム設計",
+  "投資判断に関する質問対応・サポート",
+],
+
+noteTitle: "運営事業",
+note: "FX専門オンライン学習塾",
+
+disclaimerTitle: "ご利用にあたってのご案内",
+disclaimer: [
+  <>
+    本サービスは、
+    <br />
+    特定の利益や成果を保証するものでは
+    <br />
+    ありません。
+  </>,
+  <>
+    相場分析・リスク管理・投資判断に必要な
+    <br />
+    知識と考え方を、段階的に学ぶことを
+    <br />
+    目的とした教育サービスです。
+  </>,
+  <>
+    投資助言や投資判断の代行を行うものでは
+    <br />
+    ありません。
+  </>,
+],
       },
       {
         id: "service2",
@@ -426,7 +477,12 @@ const App: React.FC = () => {
 難しい理論や専門用語は使いません。
 今のあなたに必要な「次の一歩」が分かる状態を、一緒につくっていきます。`,
         bulletsTitle: "支援内容",
-        bullets: ["あなたの「やりたいこと」の言語化", "SNSや発信の方向性設計", "仕事・サービスの形づくり", "無理なく続けられる仕組みづくり"],
+        bullets: [
+          "あなたの「やりたいこと」の言語化",
+          "SNSや発信の方向性設計",
+          "仕事・サービスの形づくり",
+          "無理なく続けられる仕組みづくり",
+        ],
       },
       {
         id: "service3",
@@ -434,7 +490,8 @@ const App: React.FC = () => {
         titleText: "自分の経験を、価値のあるカタチへ",
         title: (
           <span className="block text-center leading-snug text-lg md:text-xl">
-            自分の経験を、<br />
+            自分の経験を、
+            <br />
             価値のあるカタチへ
           </span>
         ),
@@ -445,7 +502,11 @@ const App: React.FC = () => {
 
 文章・動画・音声など、あなたに合った方法で表現し、価値を届けるところまで伴走します。`,
         bulletsTitle: "提供内容",
-        bullets: ["あなたの経験や学びを整理し、形にするサポート", "必要としている人に届く流れの設計", "継続的に価値を届けられる仕組みづくり"],
+        bullets: [
+          "あなたの経験や学びを整理し、形にするサポート",
+          "必要としている人に届く流れの設計",
+          "継続的に価値を届けられる仕組みづくり",
+        ],
       },
     ],
     []
@@ -507,7 +568,8 @@ const App: React.FC = () => {
               <span className="block font-medium text-gray-800">「変わりたい」</span>
               <span className="block text-gray-700">そう感じた、その瞬間から。</span>
               <span className="block font-medium text-gray-800">
-                小さな決断を、<br />
+                小さな決断を、
+                <br />
                 未来の自信に。
               </span>
               <span className="block text-gray-800 pt-1">
@@ -527,20 +589,15 @@ const App: React.FC = () => {
           </h2>
 
           <p className="mt-2 md:mt-4 font-cinzel text-sm md:text-xs text-gray-400 tracking-[0.2em] leading-tight text-center">
-  FROM A SINGLE DECISION TO
-  <br className="md:hidden" />
-  YOUR FUTURE.
-</p>
-
-
-
-
+            FROM A SINGLE DECISION TO
+            <br className="md:hidden" />
+            YOUR FUTURE.
+          </p>
         </FadeIn>
 
         <div className="absolute bottom-3 md:bottom-8 animate-bounce opacity-30">
-  <ArrowDown size={20} />
-</div>
-
+          <ArrowDown size={20} />
+        </div>
       </header>
 
       {/* Philosophy / Concept Section */}
@@ -598,7 +655,12 @@ const App: React.FC = () => {
       </Section>
 
       <div className="mt-16 mb-24 flex justify-center relative z-10">
-        <a href="/company02.html" target="_blank" rel="noopener noreferrer" className="group relative inline-block w-72 text-center py-6">
+        <a
+          href="/company02.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative inline-block w-72 text-center py-6"
+        >
           <span className="absolute top-0 left-0 w-full h-px bg-gray-300 group-hover:bg-gray-800 transition-colors duration-500" />
           <span className="absolute bottom-0 left-0 w-full h-px bg-gray-300 group-hover:bg-gray-800 transition-colors duration-500" />
           <span className="relative flex items-center justify-center gap-4 text-gray-700 tracking-[0.2em] text-sm md:text-base group-hover:text-black transition-colors duration-500">
@@ -621,12 +683,16 @@ const App: React.FC = () => {
                 <br className="md:hidden" />
                 あなたの未来を大きく動かす。
               </p>
-              <p className="font-noto-serif text-sm md:text-base text-gray-600 tracking-wider">夢を追う側から、
-憧れを与える存在へ。</p>
+              <p className="font-noto-serif text-sm md:text-base text-gray-600 tracking-wider">
+                夢を追う側から、
+                憧れを与える存在へ。
+              </p>
             </div>
 
             <div className="mt-12 w-16 h-px bg-gray-400 mx-auto"></div>
-            <p className="mt-8 font-lato text-sm text-gray-500 tracking-[0.2em] uppercase">Your emotional turning point starts here.</p>
+            <p className="mt-8 font-lato text-sm text-gray-500 tracking-[0.2em] uppercase">
+              Your emotional turning point starts here.
+            </p>
           </FadeIn>
         </div>
       </section>
@@ -676,7 +742,9 @@ const App: React.FC = () => {
 
                     <div className="mt-6 flex items-center justify-center gap-2 text-xs tracking-[0.25em] uppercase text-gray-400">
                       <span>{isOpen ? "Close" : "Details"}</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                      />
                     </div>
                   </div>
                 </button>
@@ -686,7 +754,8 @@ const App: React.FC = () => {
                     id={`${service.id}-detail`}
                     className="px-8 pb-10 -mt-2 text-sm text-gray-700 leading-relaxed space-y-6"
                   >
-                    <p className="whitespace-pre-line">{service.body}</p>
+                    {/* ★bodyがReactNodeでも安全に表示 */}
+                    <div className="leading-relaxed">{service.body}</div>
 
                     {service.bulletsTitle && service.bullets?.length ? (
                       <div>
@@ -711,17 +780,18 @@ const App: React.FC = () => {
                     ) : null}
 
                     {service.disclaimerTitle && service.disclaimer?.length ? (
-                      <div className="pt-8 border-t border-gray-200">
-                        <div className="font-semibold text-gray-800 tracking-widest text-xs mb-3 text-center">
-                          {service.disclaimerTitle}
-                        </div>
-                        <ul className="list-disc pl-5 space-y-2 text-gray-700 text-left">
-                          {service.disclaimer.map((text, dIdx) => (
-                            <li key={dIdx}>{text}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
+  <div className="pt-8 border-t border-gray-200">
+    <div className="font-semibold text-gray-800 tracking-widest text-xs mb-6 text-center">
+      {service.disclaimerTitle}
+    </div>
+
+    <div className="space-y-4 text-gray-600 text-[13px] md:text-sm leading-relaxed text-left">
+      {service.disclaimer.map((text, dIdx) => (
+        <p key={dIdx}>{text}</p>
+      ))}
+    </div>
+  </div>
+) : null}
 
                     <div className="pt-4">
                       <div className="mx-auto w-8 h-px bg-gray-300 group-hover:w-full transition-all duration-500"></div>
@@ -757,7 +827,9 @@ const App: React.FC = () => {
             >
               <span className="relative z-10 flex flex-col items-center font-lato tracking-[0.2em] text-sm group-hover:text-black transition-colors duration-300">
                 <span>CONTACT US</span>
-                <span className="text-[11px] tracking-[0.15em] mt-1 opacity-70">お問い合わせ</span>
+                <span className="text-[11px] tracking-[0.15em] mt-1 opacity-70">
+                  お問い合わせ
+                </span>
               </span>
               <div className="absolute inset-0 bg-black/[0.03]"></div>
             </a>
